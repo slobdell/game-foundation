@@ -4,7 +4,7 @@
 .tools
 .tools/
 # Everything `make` produces: exports, screenshots, pages, logs.
-build/
+/build/
 node_modules/
 __pycache__/
 *.pyc

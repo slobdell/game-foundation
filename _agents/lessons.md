@@ -25,37 +25,41 @@ happened and the rule it taught.
    bug spammed errors whenever a pickup was freed. Every test passed and the screenshot looked fine. So screenshot
    runs are **strict**: `make shot`/`make shots` fail on any engine or script error the game prints, and
    `make shots` includes 12 s of autopilot play, because some errors only happen when things get picked up.
+8. **Your working folder is not what gets shared: test a fresh clone.** On day one, `.gitignore`'s `build/`
+   also ignored `game/kit/build/`, so build mode was never committed. Every check passed in the folder where the
+   file existed; the first fresh clone could not compile. The foundation runs `make foundation-selftest` (clone the
+   last commit, `make check` there) before calling a change done.
 
 ## About Godot
 
-8. **Two headless Godots in one folder corrupt `.godot/`**, and the errors ("Nonexistent function",
+9. **Two headless Godots in one folder corrupt `.godot/`**, and the errors ("Nonexistent function",
    "referenced non-existent resource") look exactly like broken code. Make targets take a lock; use them.
-9. **A timeout that kills the parent doesn't stop the children.** If you kill a run, check nothing is still
+10. **A timeout that kills the parent doesn't stop the children.** If you kill a run, check nothing is still
    running (`pgrep -af Godot`) before starting another.
-10. **A new `class_name` is invisible until `make import`.**
-11. **Forward is −Z; positive `rotation.y` turns left.** The #1 "it drives backwards" bug.
-12. **Physics happens on physics frames.** Set something, then `await` frames before you check it.
-13. **The web build is pickier than desktop.** Compatibility renderer only; single-threaded export (works on
+11. **A new `class_name` is invisible until `make import`.**
+12. **Forward is −Z; positive `rotation.y` turns left.** The #1 "it drives backwards" bug.
+13. **Physics happens on physics frames.** Set something, then `await` frames before you check it.
+14. **The web build is pickier than desktop.** Compatibility renderer only; single-threaded export (works on
     any host); declare the audio bus layout in a file (buses made at runtime went silent in the browser);
     hosting limits are per file (GitHub Pages 100 MB, Cloudflare Pages 25 MiB); the browser's default font has
     no emoji or symbols like ♥ (they showed as boxes on day one: draw them, or add a font); `make web-smoke` and
     LOOK at `build/web-smoke.png` before sharing.
-14. **Art must never change gameplay.** Collision comes from the slot size, not the model, so a new model can't
+15. **Art must never change gameplay.** Collision comes from the slot size, not the model, so a new model can't
     make a level unwinnable or a door impassable.
 
 ## About working with the director
 
-15. **Their words, verbatim, in the docs.** Conversations get summarised and forgotten; `game_design.md` doesn't.
+16. **Their words, verbatim, in the docs.** Conversations get summarised and forgotten; `game_design.md` doesn't.
     A future Claude can't ask them what they meant three weeks ago.
-16. **Recommend, don't present menus.** Two or three options with your pick and why. A list of eight is homework.
-17. **Show, then ask.** "Do you want the lava brighter?" is unanswerable in the abstract. A choices page with
+17. **Recommend, don't present menus.** Two or three options with your pick and why. A list of eight is homework.
+18. **Show, then ask.** "Do you want the lava brighter?" is unanswerable in the abstract. A choices page with
     three lava colours is answered in five seconds.
-18. **The person who plays it is the final check** for anything about look, sound or feel. Tests prove it
+19. **The person who plays it is the final check** for anything about look, sound or feel. Tests prove it
     works; only they can say it's right.
-19. **Measure, don't guess.** "Is this level too hard?" → let the autopilot or a test play it ten times, or
+20. **Measure, don't guess.** "Is this level too hard?" → let the autopilot or a test play it ten times, or
     count how often the director dies. A mirrored map once looked fair and was won 64 % of the time from one
     side; only a measurement showed it.
 
 ## Added in this game
 
-(Number from 20. What happened, then the rule.)
+(Number from 21. What happened, then the rule.)

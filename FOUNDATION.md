@@ -37,7 +37,8 @@ director's files `merge=ours` so later updates never overwrite their game.
 
 1. Work here on `main`. Kit changes go in `game/kit/` with tests; docs in `_agents/` and `.claude/skills/`.
 2. Keep the sample content small and generic. It's meant to be replaced.
-3. `make check` must end `>> check: ALL GREEN`; for visible changes `make shots` and look. Commit.
+3. `make check` must end `>> check: ALL GREEN`; for visible changes `make shots` and look. Commit, then
+   `make foundation-selftest` (a throwaway game cloned from the commit must pass `make check` too).
 4. In each game: `make foundation-update` (fetches, merges, runs the check). Kit, tools and docs come across;
    the director's files (HANDOFF, game_design, data/, levels, assets, project.godot) are kept as they are.
    If a kit change needs a data change (a new field), say so in the commit message and in that game's HANDOFF.

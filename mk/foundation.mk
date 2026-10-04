@@ -13,3 +13,9 @@ foundation-update: ## (in a game) Merge the latest kit, tools and docs from the 
 	git fetch foundation
 	git merge --no-edit foundation/main
 	$(MAKE) --no-print-directory check
+
+foundation-selftest: ## (in game-foundation) Make a throwaway game from the last COMMIT and run make check in it: proves a fresh clone works
+	@test -z "$$(git status --porcelain)" || { echo "commit first: the selftest clones the last commit, not your working tree"; exit 1; }
+	rm -rf $(BUILD_DIR)/selftest
+	tools/new_game.sh "Selftest" "$(CURDIR)/$(BUILD_DIR)/selftest" "Selftest"
+	$(MAKE) -C $(BUILD_DIR)/selftest --no-print-directory check
