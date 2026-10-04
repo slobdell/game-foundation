@@ -22,16 +22,42 @@ Decisions already made for the kids (so their Claude can focus on their game):
 - **Content as JSON** in `data/`, validated by `tests/test_data.gd`.
 - **Visual slots**: art never changes gameplay; placeholders until a model exists.
 - **The director decides anything subjective**, through choices pages.
+- **Claude talks at an 11-year-old's level, teaches one hands-on thing per session** (`_agents/teaching.md`,
+  progress in `teaching_notes.md`), **and runs all git and GitHub for the kid** (`_agents/git.md`): their own
+  private repo, commits on every green step, a backup every session.
 
-## Making a kid's game
+## How a kid's game is made
+
+**The intended path (the kid does it, Claude guides):**
+1. The parent pushes this foundation to GitHub once (below) and gives the kids its clone link.
+2. The kid runs `git clone <link> my-game && cd my-game && claude`, and says hi.
+3. Their Claude sees a fresh clone (no `foundation` remote, no maintainer flag) and runs the `setup-my-game`
+   skill: `make start-my-game` (rename `origin` → `foundation`, name the game, protect the director's files with
+   `merge=ours`), `make github-login` (browser device code; the sign-in is stored in the game folder's `.gh/` and
+   wired into that repo only), `make github-create REPO=…` (their own **private** repo as `origin`, first push).
+4. From then on Claude commits each green step and runs `make backup` every session (`_agents/git.md`).
+
+**The local shortcut (the parent, on this computer):** `make new-game NAME="Lava Lover" DIR=~/projects/lava-lover
+DIRECTOR=<name>` clones from this folder and runs the same `start-my-game`; the kid's Claude then does only the
+GitHub part. `make foundation-selftest` uses it.
+
+**This checkout is marked as the maintainer's** (`git config foundation.maintainer true`, local only; it is not
+cloned), which is how Claude tells "maintaining the template" from "a kid's fresh clone". Set it again if you
+re-clone the foundation to maintain it.
+
+## Putting the foundation on GitHub (once)
 
 ```
-make new-game NAME="Lava Lover" DIR=~/projects/lava-lover DIRECTOR=<first name>
-cd ~/projects/lava-lover && make check
+make gh                                    # the project-local gh tool
+GH_CONFIG_DIR=~/.config/gh .tools/gh-*/bin/gh auth login --web   # your own account, not a kid's
+.tools/gh-*/bin/gh repo create game-foundation --public --source=. --remote=origin --push
 ```
-Then open Claude Code in that folder with the kid. It starts with *Day one* in `HANDOFF.md`.
-`new-game` clones this repo (remote `foundation`), names the game, shares the Godot toolchain, and marks the
-director's files `merge=ours` so later updates never overwrite their game.
+**Public is recommended**: the foundation has no secrets (keys live in `~/.config/game-foundation/keys.env`,
+sign-ins in git-ignored `.gh/`), and a kid's very first `git clone` happens before any GitHub sign-in exists, so
+cloning a private repo would make them type a username and an access token. If it must be private: add each kid
+as a collaborator (read access) and do the first clone for them (`make new-game`, or clone after
+`gh auth login` as them); `make foundation-update` then works through the game's own sign-in. After that, `git push origin main` publishes
+foundation improvements; each game picks them up with `make foundation-update`.
 
 ## Improving the foundation, and shipping improvements to the games
 
@@ -49,7 +75,7 @@ director's files `merge=ours` so later updates never overwrite their game.
 
 | Area | Paths |
 |---|---|
-| Core | `Makefile`, `mk/core.mk`, `mk/play.mk`, `mk/foundation.mk`, `tests/run_tests.gd`, `tests/test_case.gd`, `tools/lint.gd`, `tools/new_*.{py,sh}` |
+| Core | `Makefile`, `mk/core.mk`, `mk/play.mk`, `mk/foundation.mk`, `mk/git.mk`, `tools/github.sh`, `tools/start_my_game.sh`, `tests/run_tests.gd`, `tests/test_case.gd`, `tools/lint.gd`, `tools/new_*.{py,sh}` |
 | Kit | `game/`, `data/` (not `data/voices.json`), `tests/test_*.gd` for the kit |
 | Assets (Meshy) | `tools/assets/`, `assets/pipeline/`, `mk/assets.mk`, `_agents/assets.md`, `_agents/art_direction.md`, `.claude/skills/make-model/` |
 | Audio (ElevenLabs, Suno) | `tools/audio/`, `game/kit/audio/`, `mk/audio.mk`, `data/voices.json`, `assets/audio/`, `assets/music/`, `_agents/audio.md`, `.claude/skills/make-sound/` |

@@ -1,10 +1,36 @@
-# Teaching notes
+# Teaching notes: what the director is learning
 
-Concepts the director met, written so they can be re-explained or shown again. **Append; don't rewrite.**
-Add an entry when something confused them and then clicked, or when they asked "how does that work?".
+Claude keeps this up to date every session (`teaching.md` says how to teach). Two parts: the **Skills** table
+(where they are on each idea) and the **Learning log** (one entry per learning moment, newest first).
 
-Format: **Concept**, the one-line version, why it matters, and a way to *show* it (something to click or change
-and watch). Seed entries below are from the kit; mark which ones the director has actually seen.
+## Skills
+
+Stages: — not yet · **I do** (seen Claude do it) · **we do** (did it with help) · **you do** (did it alone).
+Move a skill forward only when they've done it well. Add rows when they learn things not listed.
+
+| # | Skill | Stage | Since |
+|---|---|---|---|
+| 1 | Games are made of pieces (scenes, nodes) | — | |
+| 2 | Tuning numbers in the Inspector | — | |
+| 3 | Writing content in data files (dialogue, missions, items) | — | |
+| 4 | Save points and backups (git, GitHub) | — | |
+| 5 | Variables and `if` | — | |
+| 6 | Functions and signals | — | |
+| 7 | Coordinates and movement | — | |
+| 8 | Finding bugs (errors, `print`) | — | |
+| 9 | Tests | — | |
+| 10 | Writing a small script | — | |
+| 11 | Writing prompts for models and sounds | — | |
+| 12 | Planning a feature in steps | — | |
+
+## Learning log
+
+(Newest first. Date, the idea, what they did hands-on, their one-sentence recap in their words.)
+
+## Ready-made explanations
+
+Concepts written so they can be re-explained or shown again. **Append; don't rewrite.** Format: **Concept**, the
+one-line version, and a way to *show* it (something to click or change and watch).
 
 ---
 

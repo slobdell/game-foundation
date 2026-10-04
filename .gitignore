@@ -17,3 +17,5 @@ __pycache__/
 assets/incoming/*
 !assets/incoming/*.json
 !assets/incoming/.gdignore
+# This game's GitHub sign-in (tools/github.sh). A secret: never commit it.
+.gh/

@@ -1,6 +1,6 @@
 # Starting new games from the foundation, and pulling kit improvements into a game.
 
-.PHONY: new-game foundation-update
+.PHONY: new-game foundation-update foundation-selftest
 
 new-game: ## (in game-foundation) Start a kid's game: NAME="Lava Lover" DIR=~/projects/lava-lover DIRECTOR=Sam
 	@test -n "$(NAME)" -a -n "$(DIR)" || { echo 'usage: make new-game NAME="Lava Lover" DIR=~/projects/lava-lover DIRECTOR=Sam'; exit 1; }

@@ -40,6 +40,8 @@ doctor: ## Report toolchain health: Godot, templates, Python, browser, display, 
 	@echo "display:    $${DISPLAY:-none (make run / shots need a display; tests and exports do not)}"
 	@echo "meshy key:  $$([ -n "$${MESHY_API_KEY:-}" ] && echo set || echo 'NOT SET (3D models; see _agents/assets.md)')"
 	@echo "11labs key: $$([ -n "$${ELEVENLABS_API_KEY:-}" ] && echo set || echo 'NOT SET (sounds and voices; see _agents/audio.md)')"
+	@echo "gh:         $$($(GH) --version 2>/dev/null | head -1 || echo 'MISSING (make gh: needed to back up to GitHub)')"
+	@echo "git remotes: $$(git remote -v | awk '$$3=="(fetch)"{printf "%s=%s  ", $$1, $$2}')"
 
 # Rebuilds .godot/ (asset imports + the class_name cache). A new `class_name` is invisible to headless runs until
 # this has run, so every target that runs project code depends on it.

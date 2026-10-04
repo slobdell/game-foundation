@@ -35,10 +35,11 @@ Two builds: the **browser build** (friends click a link and play; nothing to ins
 
 ## Put it online: GitHub Pages (free; `make publish-web`)
 
-Once per game (the parent does this with the kid):
-1. The repo is on GitHub (`git remote -v` shows `origin ... github.com/...`), and `git push` works from this
-   computer (`gh auth login` is the easy way). GitHub Pages is free for **public** repos; a private repo needs a
-   paid plan.
+Once per game, **only with a parent's yes** (this makes the game public):
+1. The repo is on GitHub (`git remote -v` shows `origin ... github.com/...`, set up by the `setup-my-game` skill)
+   and this folder is signed in (`make github-status`). GitHub Pages is free for **public** repos; the kid's repo
+   is private, so this needs either a paid plan or the parent deciding to make the repo public. Ask the parent;
+   never change a repo's visibility yourself. itch.io (below) works with the repo staying private.
 2. `make publish-web`. It exports, copies `build/web` into a fresh one-commit branch `gh-pages` (plus `.nojekyll`),
    and force-pushes it. Your code branches are never touched; the branch only ever holds the latest build.
 3. If the `gh` tool is installed, the target also switches Pages on. Otherwise, on GitHub: **Settings > Pages >

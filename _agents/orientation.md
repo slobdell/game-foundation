@@ -18,7 +18,9 @@ choices pages, a Makefile and these docs. The director's actual game is describe
                                     anything subjective    at the screenshots
 ```
 
-- [working_with_the_director.md](working_with_the_director.md): who decides what, how to talk, big dreams in small steps.
+- [working_with_the_director.md](working_with_the_director.md): who decides what, how to talk to an 11–13-year-old, big dreams in small steps.
+- [teaching.md](teaching.md): you're their teacher too; one hands-on learning moment per session.
+- [git.md](git.md): you run all git and GitHub for them: save points, backups, sync.
 - [verification.md](verification.md): what "done" means.
 - [lessons.md](lessons.md): mistakes already made once (on a big earlier project), so you don't repeat them.
 
@@ -70,6 +72,8 @@ build/                   everything make produces (screenshots, exports, pages);
 
 ```
 make bootstrap      # once per computer: pinned Godot + export templates into .tools/
+make sync           # start of a session: get anything newer from their GitHub
+make backup         # end of a session (and every few commits): back up to their GitHub
 make doctor         # what's installed, and whether the Meshy / ElevenLabs keys are set
 make check          # everything headless; ends with ">> check: ALL GREEN"
 make demo           # watch the game play itself

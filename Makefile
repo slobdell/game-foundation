@@ -36,6 +36,14 @@ TEMPLATES_TPZ  := Godot_v$(GODOT_TAG)_export_templates.tpz
 TEMPLATE_FILES := web_nothreads_debug.zip web_nothreads_release.zip \
                   linux_debug.x86_64 linux_release.x86_64 version.txt
 
+# GitHub's command-line tool, project-local like Godot: signing in, making the kid's repo, backups. (_agents/git.md)
+GH_VERSION     := 2.102.0
+GH_HOME        := $(TOOLS_DIR)/gh-$(GH_VERSION)
+GH             := $(GH_HOME)/bin/gh
+GH_TGZ         := gh_$(GH_VERSION)_linux_amd64.tar.gz
+GH_URL         := https://github.com/cli/cli/releases/download/v$(GH_VERSION)
+export GH
+
 BUILD_DIR      := build
 # ONE headless Godot at a time per checkout. Two Godot processes importing into the same .godot/ cache corrupt it,
 # and the symptom (missing resources, "Nonexistent function") reads exactly like broken code (Tank Squad lost an

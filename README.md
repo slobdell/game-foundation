@@ -3,10 +3,19 @@
 A starting point for making your own 3D game with Claude. You have the ideas and make the choices; Claude
 builds it with you, one playable step at a time.
 
-## Starting
+## Starting (kids)
 
-1. Open a terminal in this folder and run `make bootstrap` (once per computer: downloads Godot).
-2. Start Claude Code here and say hi. It knows what to do on day one: it will ask about your game.
+You only type three things yourself. Open a terminal and type:
+
+```
+git clone <the link your parent gives you> my-game
+cd my-game
+claude
+```
+
+Then say hi. Claude takes it from there: it will help you name your game, connect it to **your** GitHub account
+(you'll type a short code on github.com), and start building with you. You never have to remember any git
+commands: Claude makes the save points and backs everything up to your GitHub.
 
 ## Commands you'll use
 
@@ -26,10 +35,16 @@ A gamepad works too.
 
 ## For parents
 
+- **Before the kids start:** push this foundation to GitHub (`FOUNDATION.md` says how) and give them its clone
+  link. Make the foundation repo **public** (it has no secrets) so the kids' first `git clone` needs no password. Each kid needs: a GitHub account, git, Python 3, `make`, `ffmpeg`, and Claude Code. Godot and GitHub's
+  `gh` tool download themselves into the game folder (`make bootstrap`, `make gh`).
+- Each kid's GitHub sign-in is stored inside their game folder (`.gh/`, never committed) and used for that repo
+  only, so it doesn't touch your GitHub account on a shared computer.
 - API keys for Meshy (3D models) and ElevenLabs (sounds and voices) go in
   `~/.config/game-foundation/keys.env` (`export MESHY_API_KEY=…`, `export ELEVENLABS_API_KEY=…`). `make doctor`
   says whether they're set. Every paid request is logged with its cost in `assets/meshy_ledger.md` and
   `assets/audio/elevenlabs_ledger.md`.
-- Claude never pushes or publishes without you (`git push` is denied in `.claude/settings.json`; sharing is in
-  `_agents/sharing.md`).
+- Claude backs the game up to the kid's own **private** repo routinely (`_agents/git.md`); force-pushes and
+  history rewrites are denied in `.claude/settings.json`. Anything **public** (a playable web link, itch.io) needs
+  your yes (`_agents/sharing.md`).
 - How it all works: `CLAUDE.md`, `HANDOFF.md`, `_agents/`. Maintaining the foundation itself: `FOUNDATION.md`.
