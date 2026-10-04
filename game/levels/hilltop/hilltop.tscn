@@ -1,0 +1,120 @@
+[gd_scene load_steps=14 format=3]
+
+[ext_resource type="Script" path="res://game/kit/world/level.gd" id="level"]
+[ext_resource type="Script" path="res://game/kit/world/collectible.gd" id="collectible"]
+[ext_resource type="Script" path="res://game/kit/world/npc.gd" id="npc"]
+[ext_resource type="Script" path="res://game/kit/world/portal.gd" id="portal"]
+[ext_resource type="Script" path="res://game/kit/world/prop.gd" id="prop"]
+[ext_resource type="Script" path="res://game/kit/world/place.gd" id="place"]
+[ext_resource type="Script" path="res://game/kit/combat/enemy.gd" id="enemy"]
+
+[sub_resource type="ProceduralSkyMaterial" id="sky_mat"]
+sky_top_color = Color(0.25, 0.2, 0.45, 1)
+sky_horizon_color = Color(0.95, 0.6, 0.45, 1)
+ground_horizon_color = Color(0.95, 0.6, 0.45, 1)
+
+[sub_resource type="Sky" id="sky"]
+sky_material = SubResource("sky_mat")
+
+[sub_resource type="Environment" id="env"]
+background_mode = 2
+sky = SubResource("sky")
+ambient_light_source = 3
+ambient_light_sky_contribution = 0.6
+ambient_light_energy = 1.0
+tonemap_mode = 0
+fog_enabled = true
+fog_light_color = Color(0.95, 0.6, 0.45, 1)
+fog_density = 0.001
+
+[sub_resource type="BoxShape3D" id="ground_shape"]
+size = Vector3(80, 1, 80)
+
+[sub_resource type="StandardMaterial3D" id="ground_mat"]
+albedo_color = Color(0.45, 0.4, 0.36, 1)
+
+[sub_resource type="PlaneMesh" id="ground_mesh"]
+material = SubResource("ground_mat")
+size = Vector2(80, 80)
+
+[node name="Hilltop" type="Node3D"]
+script = ExtResource("level")
+level_id = "hilltop"
+
+[node name="Environment" type="WorldEnvironment" parent="."]
+environment = SubResource("env")
+
+[node name="Sun" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.866025, -0.383022, 0.321394, 0, 0.642788, 0.766044, -0.5, -0.663414, 0.55667, 0, 10, 0)
+shadow_enabled = true
+directional_shadow_max_distance = 60.0
+
+[node name="Ground" type="StaticBody3D" parent="."]
+
+[node name="Shape" type="CollisionShape3D" parent="Ground"]
+transform = Transform3D(1, 0, 0, 0, 1, -0, -0, 0, 1, 0, -0.5, 0)
+shape = SubResource("ground_shape")
+
+[node name="Mesh" type="MeshInstance3D" parent="Ground"]
+mesh = SubResource("ground_mesh")
+
+[node name="from_meadow" type="Marker3D" parent="." groups=["spawn"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+
+[node name="Stars" type="Node3D" parent="."]
+
+[node name="Star1" type="Area3D" parent="Stars"]
+transform = Transform3D(1, 0, 0, 0, 1, -0, -0, 0, 1, -6, 0, 6)
+script = ExtResource("collectible")
+item = "star"
+
+[node name="Star2" type="Area3D" parent="Stars"]
+transform = Transform3D(1, 0, 0, 0, 1, -0, -0, 0, 1, 6, 0, 8)
+script = ExtResource("collectible")
+item = "star"
+
+[node name="Props" type="Node3D" parent="."]
+
+[node name="Step1" type="StaticBody3D" parent="Props"]
+transform = Transform3D(1, 0, 0, 0, 1, -0, -0, 0, 1, 4, -1, -10)
+script = ExtResource("prop")
+slot = "build_block"
+
+[node name="Step2" type="StaticBody3D" parent="Props"]
+transform = Transform3D(1, 0, 0, 0, 1, -0, -0, 0, 1, 6, 0, -12)
+script = ExtResource("prop")
+slot = "build_block"
+
+[node name="Step3" type="StaticBody3D" parent="Props"]
+transform = Transform3D(1, 0, 0, 0, 1, -0, -0, 0, 1, 8, 1, -14)
+script = ExtResource("prop")
+slot = "build_block"
+
+[node name="TopStar" type="Area3D" parent="Stars"]
+transform = Transform3D(1, 0, 0, 0, 1, -0, -0, 0, 1, 8, 3.2, -14)
+script = ExtResource("collectible")
+item = "star"
+
+[node name="Summit" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, -0, -0, 0, 1, 8, 3.5, -14)
+script = ExtResource("place")
+place_id = "summit"
+
+[node name="ToMeadow" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 6)
+script = ExtResource("portal")
+to_level = "meadow"
+to_spawn = "from_hilltop"
+
+[node name="Enemies" type="Node3D" parent="."]
+
+[node name="Slime1" type="CharacterBody3D" parent="Enemies"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9, 0, -8)
+script = ExtResource("enemy")
+enemy_id = "slime"
+drop_item = "star"
+
+[node name="Slime2" type="CharacterBody3D" parent="Enemies"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12, 0, -3)
+script = ExtResource("enemy")
+enemy_id = "slime"

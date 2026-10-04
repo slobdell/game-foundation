@@ -1,0 +1,2 @@
+# Godot scene/resource files are text; keep line endings stable across OSes.
+* text=auto eol=lf

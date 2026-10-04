@@ -1,0 +1,18 @@
+{
+  "_about": "Who speaks how. Each speaker (matched to a dialogue line's \"speaker\", ignoring case) has an ElevenLabs voice. See _agents/audio.md; `make voice-list` shows the voices you can use, `make audio-choices SPEAKER=guide VOICES=a,b,c` lets the director hear and pick.",
+  "model": "eleven_multilingual_v2",
+  "speakers": {
+    "narrator": {
+      "voice_id": "JBFqnCBsd6RMkjVDRZzb",
+      "voice_name": "George",
+      "about": "ElevenLabs premade: warm British storyteller. Calm, unhurried narration.",
+      "settings": {"stability": 0.55, "similarity_boost": 0.8, "style": 0.2, "use_speaker_boost": true, "speed": 0.95}
+    },
+    "guide": {
+      "voice_id": "cgSgspJ2msm6clMCkdW9",
+      "voice_name": "Jessica",
+      "about": "ElevenLabs premade: playful, bright, warm. The friendly helper who gives quests.",
+      "settings": {"stability": 0.45, "similarity_boost": 0.8, "style": 0.35, "use_speaker_boost": true, "speed": 1.0}
+    }
+  }
+}

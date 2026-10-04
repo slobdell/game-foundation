@@ -1,0 +1,22 @@
+{
+  "target_lufs": -18.0,
+  "tracks": {
+    "explore": {
+      "file": "explore.ogg",
+      "title": "Explore (placeholder)",
+      "source": "placeholder",
+      "from_file": "",
+      "section_s": [
+        0.0,
+        21.33
+      ],
+      "loop_s": 21.33,
+      "bpm": 90,
+      "lufs": -18.0,
+      "peak_db": -7.5,
+      "rights": "CC0: synthesised by tools/audio/placeholders.py",
+      "imported": "2026-10-04T00:09:24",
+      "placeholder": true
+    }
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "_about": "Every level in the game. start = where a new game begins. music = an id in assets/music (empty = silence). Add one with: make new-level ID=lava_fields TITLE=\"Lava Fields\"",
+  "start": "meadow",
+  "levels": {
+    "meadow":  {"scene": "res://game/levels/meadow/meadow.tscn",   "title": "The Meadow",  "music": "explore"},
+    "hilltop": {"scene": "res://game/levels/hilltop/hilltop.tscn", "title": "The Hilltop", "music": "explore"}
+  }
+}

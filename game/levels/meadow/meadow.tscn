@@ -1,0 +1,141 @@
+[gd_scene load_steps=13 format=3]
+
+[ext_resource type="Script" path="res://game/kit/world/level.gd" id="level"]
+[ext_resource type="Script" path="res://game/kit/world/collectible.gd" id="collectible"]
+[ext_resource type="Script" path="res://game/kit/world/npc.gd" id="npc"]
+[ext_resource type="Script" path="res://game/kit/world/portal.gd" id="portal"]
+[ext_resource type="Script" path="res://game/kit/world/prop.gd" id="prop"]
+[ext_resource type="Script" path="res://game/kit/world/place.gd" id="place"]
+
+[sub_resource type="ProceduralSkyMaterial" id="sky_mat"]
+sky_top_color = Color(0.35, 0.55, 0.85, 1)
+sky_horizon_color = Color(0.75, 0.82, 0.9, 1)
+ground_horizon_color = Color(0.75, 0.82, 0.9, 1)
+
+[sub_resource type="Sky" id="sky"]
+sky_material = SubResource("sky_mat")
+
+[sub_resource type="Environment" id="env"]
+background_mode = 2
+sky = SubResource("sky")
+ambient_light_source = 3
+ambient_light_sky_contribution = 0.6
+ambient_light_energy = 1.0
+tonemap_mode = 0
+fog_enabled = true
+fog_light_color = Color(0.75, 0.82, 0.9, 1)
+fog_density = 0.001
+
+[sub_resource type="BoxShape3D" id="ground_shape"]
+size = Vector3(80, 1, 80)
+
+[sub_resource type="StandardMaterial3D" id="ground_mat"]
+albedo_color = Color(0.45, 0.62, 0.38, 1)
+
+[sub_resource type="PlaneMesh" id="ground_mesh"]
+material = SubResource("ground_mat")
+size = Vector2(80, 80)
+
+[node name="Meadow" type="Node3D"]
+script = ExtResource("level")
+level_id = "meadow"
+
+[node name="Environment" type="WorldEnvironment" parent="."]
+environment = SubResource("env")
+
+[node name="Sun" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.866025, -0.383022, 0.321394, 0, 0.642788, 0.766044, -0.5, -0.663414, 0.55667, 0, 10, 0)
+shadow_enabled = true
+directional_shadow_max_distance = 60.0
+
+[node name="Ground" type="StaticBody3D" parent="."]
+
+[node name="Shape" type="CollisionShape3D" parent="Ground"]
+transform = Transform3D(1, 0, 0, 0, 1, -0, -0, 0, 1, 0, -0.5, 0)
+shape = SubResource("ground_shape")
+
+[node name="Mesh" type="MeshInstance3D" parent="Ground"]
+mesh = SubResource("ground_mesh")
+
+[node name="Start" type="Marker3D" parent="." groups=["spawn"]]
+transform = Transform3D(1, 0, 0, 0, 1, -0, -0, 0, 1, 0, 0, 8)
+
+[node name="from_hilltop" type="Marker3D" parent="." groups=["spawn"]]
+transform = Transform3D(1, 0, 0, 0, 1, -0, -0, 0, 1, 0, 0, -14)
+
+[node name="Stars" type="Node3D" parent="."]
+
+[node name="Star1" type="Area3D" parent="Stars"]
+transform = Transform3D(1, 0, 0, 0, 1, -0, -0, 0, 1, 0, 0, -11)
+script = ExtResource("collectible")
+item = "star"
+
+[node name="Star2" type="Area3D" parent="Stars"]
+transform = Transform3D(1, 0, 0, 0, 1, -0, -0, 0, 1, 8.56, 0, -4.78)
+script = ExtResource("collectible")
+item = "star"
+
+[node name="Star3" type="Area3D" parent="Stars"]
+transform = Transform3D(1, 0, 0, 0, 1, -0, -0, 0, 1, 5.29, 0, 5.28)
+script = ExtResource("collectible")
+item = "star"
+
+[node name="Star4" type="Area3D" parent="Stars"]
+transform = Transform3D(1, 0, 0, 0, 1, -0, -0, 0, 1, -5.29, 0, 5.28)
+script = ExtResource("collectible")
+item = "star"
+
+[node name="Star5" type="Area3D" parent="Stars"]
+transform = Transform3D(1, 0, 0, 0, 1, -0, -0, 0, 1, -8.56, 0, -4.78)
+script = ExtResource("collectible")
+item = "star"
+
+[node name="Guide" type="Area3D" parent="."]
+transform = Transform3D(-0.939693, -0, -0.34202, 0, 1, -0, 0.34202, -0, -0.939693, 3, 0, 4)
+script = ExtResource("npc")
+npc_id = "guide"
+display_name = "Guide"
+dialogue = "guide_hello"
+
+[node name="Props" type="Node3D" parent="."]
+
+[node name="Tree1" type="StaticBody3D" parent="Props"]
+transform = Transform3D(1, 0, 0, 0, 1, -0, -0, 0, 1, -14, 0, -6)
+script = ExtResource("prop")
+slot = "prop_tree"
+
+[node name="Tree2" type="StaticBody3D" parent="Props"]
+transform = Transform3D(0.540302, 0, 0.841471, 0, 1, -0, -0.841471, 0, 0.540302, 15, 0, 2)
+script = ExtResource("prop")
+slot = "prop_tree"
+
+[node name="Tree3" type="StaticBody3D" parent="Props"]
+transform = Transform3D(-0.416147, 0, 0.909297, 0, 1, -0, -0.909297, -0, -0.416147, -10, 0, 12)
+script = ExtResource("prop")
+slot = "prop_tree"
+
+[node name="Tree4" type="StaticBody3D" parent="Props"]
+transform = Transform3D(0.877583, 0, 0.479426, 0, 1, -0, -0.479426, 0, 0.877583, 18, 0, -16)
+script = ExtResource("prop")
+slot = "prop_tree"
+
+[node name="Rock5" type="StaticBody3D" parent="Props"]
+transform = Transform3D(0.955336, 0, 0.29552, 0, 1, -0, -0.29552, 0, 0.955336, 6, 0, -6)
+script = ExtResource("prop")
+slot = "prop_rock"
+
+[node name="Rock6" type="StaticBody3D" parent="Props"]
+transform = Transform3D(0.362358, 0, 0.932039, 0, 1, -0, -0.932039, 0, 0.362358, -6, 0, -12)
+script = ExtResource("prop")
+slot = "prop_rock"
+
+[node name="Rock7" type="StaticBody3D" parent="Props"]
+transform = Transform3D(-0.588501, 0, 0.808496, 0, 1, -0, -0.808496, -0, -0.588501, 12, 0, 10)
+script = ExtResource("prop")
+slot = "prop_rock"
+
+[node name="ToHilltop" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, -0, -0, 0, 1, 0, 0, -20)
+script = ExtResource("portal")
+to_level = "hilltop"
+to_spawn = "from_meadow"

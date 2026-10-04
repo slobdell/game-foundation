@@ -1,0 +1,33 @@
+{
+  "_about": "Goals the player works through. Step kinds: collect, talk, reach, build, flag (see game/kit/missions/missions.gd). auto_start missions begin with the game; others start from dialogue (then.start_mission) or another mission's reward.",
+  "missions": [
+    {
+      "id": "say_hello",
+      "title": "Say hello",
+      "auto_start": true,
+      "steps": [
+        {"do": "talk", "to": "guide", "text": "Talk to the Guide"}
+      ]
+    },
+    {
+      "id": "first_stars",
+      "title": "Star collector",
+      "steps": [
+        {"do": "collect", "item": "star", "count": 5, "text": "Collect stars in the meadow"},
+        {"do": "talk", "to": "guide", "text": "Show the Guide your stars"}
+      ],
+      "reward": {"flag": "star_collector", "start_mission": "summit"}
+    },
+    {
+      "id": "summit",
+      "title": "Top of the hill",
+      "steps": [
+        {"do": "reach", "place": "hilltop", "text": "Go through the purple portal"},
+        {"do": "defeat", "enemy": "slime", "count": 2, "text": "Chase off the slimes (F or click to shoot)"},
+        {"do": "reach", "place": "summit", "text": "Climb to the top of the hill"},
+        {"do": "build", "piece": "block", "count": 1, "text": "Press B and build something!"}
+      ],
+      "reward": {"items": {"star": 3}}
+    }
+  ]
+}

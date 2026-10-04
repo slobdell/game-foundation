@@ -1,0 +1,22 @@
+{
+  "id": "guide_hello",
+  "lines": [
+    {"speaker": "Guide", "text": "Oh, hello! You must be new here."},
+    {"speaker": "Guide", "text": "There are stars scattered all over this meadow. Could you bring me five?"}
+  ],
+  "then": {"start_mission": "first_stars", "set_flag": "met_guide"},
+  "variants": [
+    {
+      "when": {"mission_done": "first_stars"},
+      "lines": [{"speaker": "Guide", "text": "Have you climbed the hill yet? The purple portal will take you there."}]
+    },
+    {
+      "when": {"mission_active": "first_stars", "has_item": {"star": 5}},
+      "lines": [{"speaker": "Guide", "text": "Five stars! You are a natural. Thank you!"}]
+    },
+    {
+      "when": {"mission_active": "first_stars"},
+      "lines": [{"speaker": "Guide", "text": "Still looking? They glow, so keep your eyes open!"}]
+    }
+  ]
+}

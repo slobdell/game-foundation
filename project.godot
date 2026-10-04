@@ -1,0 +1,122 @@
+; Engine configuration file. Mostly edited through the editor; the comments explain the choices made for you.
+
+config_version=5
+
+[application]
+
+config/name="New Game"
+config/description="Made with Game Foundation."
+run/main_scene="res://game/main.tscn"
+config/features=PackedStringArray("4.7", "GL Compatibility")
+run/flush_stdout_on_print=true
+
+[autoload]
+
+; The few always-there services. Everything else is a scene you snap into a level.
+Game="*res://game/kit/game_state.gd"
+Missions="*res://game/kit/missions/missions.gd"
+Sound="*res://game/kit/audio/sound.gd"
+Levels="*res://game/kit/levels.gd"
+Dialogue="*res://game/kit/ui/dialogue.gd"
+
+[display]
+
+window/size/viewport_width=1280
+window/size/viewport_height=720
+window/stretch/mode="canvas_items"
+window/stretch/aspect="expand"
+
+[input]
+
+move_forward={
+"deadzone": 0.2,
+"events": [Object(InputEventKey,"physical_keycode":87), Object(InputEventKey,"physical_keycode":4194320), Object(InputEventJoypadMotion,"device":-1,"axis":1,"axis_value":-1.0)]
+}
+move_back={
+"deadzone": 0.2,
+"events": [Object(InputEventKey,"physical_keycode":83), Object(InputEventKey,"physical_keycode":4194322), Object(InputEventJoypadMotion,"device":-1,"axis":1,"axis_value":1.0)]
+}
+move_left={
+"deadzone": 0.2,
+"events": [Object(InputEventKey,"physical_keycode":65), Object(InputEventKey,"physical_keycode":4194319), Object(InputEventJoypadMotion,"device":-1,"axis":0,"axis_value":-1.0)]
+}
+move_right={
+"deadzone": 0.2,
+"events": [Object(InputEventKey,"physical_keycode":68), Object(InputEventKey,"physical_keycode":4194321), Object(InputEventJoypadMotion,"device":-1,"axis":0,"axis_value":1.0)]
+}
+jump={
+"deadzone": 0.2,
+"events": [Object(InputEventKey,"physical_keycode":32), Object(InputEventJoypadButton,"device":-1,"button_index":0)]
+}
+interact={
+"deadzone": 0.2,
+"events": [Object(InputEventKey,"physical_keycode":69), Object(InputEventJoypadButton,"device":-1,"button_index":2)]
+}
+sprint={
+"deadzone": 0.2,
+"events": [Object(InputEventKey,"physical_keycode":4194325), Object(InputEventJoypadButton,"device":-1,"button_index":1)]
+}
+build_mode={
+"deadzone": 0.2,
+"events": [Object(InputEventKey,"physical_keycode":66), Object(InputEventJoypadButton,"device":-1,"button_index":3)]
+}
+build_next={
+"deadzone": 0.2,
+"events": [Object(InputEventKey,"physical_keycode":81), Object(InputEventJoypadButton,"device":-1,"button_index":14)]
+}
+build_rotate={
+"deadzone": 0.2,
+"events": [Object(InputEventKey,"physical_keycode":82), Object(InputEventJoypadButton,"device":-1,"button_index":13)]
+}
+attack={
+"deadzone": 0.2,
+"events": [Object(InputEventKey,"physical_keycode":70), Object(InputEventMouseButton,"button_index":1), Object(InputEventJoypadButton,"device":-1,"button_index":10)]
+}
+pause={
+"deadzone": 0.2,
+"events": [Object(InputEventKey,"physical_keycode":4194305), Object(InputEventJoypadButton,"device":-1,"button_index":6)]
+}
+camera_left={
+"deadzone": 0.2,
+"events": [Object(InputEventJoypadMotion,"device":-1,"axis":2,"axis_value":-1.0)]
+}
+camera_right={
+"deadzone": 0.2,
+"events": [Object(InputEventJoypadMotion,"device":-1,"axis":2,"axis_value":1.0)]
+}
+camera_up={
+"deadzone": 0.2,
+"events": [Object(InputEventJoypadMotion,"device":-1,"axis":3,"axis_value":-1.0)]
+}
+camera_down={
+"deadzone": 0.2,
+"events": [Object(InputEventJoypadMotion,"device":-1,"axis":3,"axis_value":1.0)]
+}
+
+[layer_names]
+
+3d_physics/layer_1="world"
+3d_physics/layer_2="player"
+3d_physics/layer_3="creatures"
+3d_physics/layer_4="pickups"
+
+[physics]
+
+; Physics runs 60 times a second; interpolation keeps motion smooth on fast screens.
+common/physics_ticks_per_second=60
+common/physics_interpolation=true
+3d/physics_engine="Jolt Physics"
+
+[rendering]
+
+; Compatibility = OpenGL 3 / WebGL 2: the ONLY renderer that exports to the web, so we use it everywhere and the
+; browser build never looks different from the desktop one. It also runs on weak laptops.
+renderer/rendering_method="gl_compatibility"
+renderer/rendering_method.mobile="gl_compatibility"
+textures/vram_compression/import_etc2_astc=true
+anti_aliasing/quality/msaa_3d=1
+
+[audio]
+
+; Declared in a file: buses created at runtime went silent in the browser build (Tank Squad, round 17).
+buses/default_bus_layout="res://default_bus_layout.tres"

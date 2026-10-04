@@ -1,0 +1,4 @@
+{
+  "_about": "Things the player can carry. The id is what missions, pieces and collectibles refer to; slot is the visual slot (data/slots.json) used when it lies in the world.",
+  "star": {"name": "Star", "plural": "Stars", "slot": "pickup_star"}
+}

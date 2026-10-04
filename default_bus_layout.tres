@@ -1,0 +1,48 @@
+[gd_resource type="AudioBusLayout" load_steps=2 format=3]
+
+; The game's mixer. Godot loads this file by default (Project Settings > Audio > Buses), and every bus is DECLARED
+; here on purpose: buses created at runtime broke the browser build in Tank Squad. Sound (game/kit/audio/sound.gd)
+; routes music to Music, effects to SFX, dialogue to Voice and placeless sounds to UI. _agents/audio.md explains.
+;
+; Master: a hard limiter that only catches peaks (ceiling -1 dB, no pre-gain = no make-up gain, so it never makes the
+; whole mix louder and squashed). In the browser bus effects do not run, so sound.gd trims Master by -3 dB there.
+; Music sits 6 dB under everything else; Sound.voice() dips it a further 10 dB while someone speaks.
+
+[sub_resource type="AudioEffectHardLimiter" id="AudioEffectHardLimiter_master"]
+resource_name = "HardLimiter"
+ceiling_db = -1.0
+release = 0.1
+
+[resource]
+bus/0/name = &"Master"
+bus/0/solo = false
+bus/0/mute = false
+bus/0/bypass_fx = false
+bus/0/volume_db = 0.0
+bus/0/send = &""
+bus/0/effect/0/effect = SubResource("AudioEffectHardLimiter_master")
+bus/0/effect/0/enabled = true
+bus/1/name = &"Music"
+bus/1/solo = false
+bus/1/mute = false
+bus/1/bypass_fx = false
+bus/1/volume_db = -6.0
+bus/1/send = &"Master"
+bus/2/name = &"SFX"
+bus/2/solo = false
+bus/2/mute = false
+bus/2/bypass_fx = false
+bus/2/volume_db = 0.0
+bus/2/send = &"Master"
+bus/3/name = &"Voice"
+bus/3/solo = false
+bus/3/mute = false
+bus/3/bypass_fx = false
+bus/3/volume_db = 0.0
+bus/3/send = &"Master"
+bus/4/name = &"UI"
+bus/4/solo = false
+bus/4/mute = false
+bus/4/bypass_fx = false
+bus/4/volume_db = -2.0
+bus/4/send = &"Master"

@@ -1,0 +1,14 @@
+[
+  {"id": "pickup", "prompt": "a bright, cheerful magical pickup chime, two quick rising sparkly notes, clean and short, no music", "duration": 0.6, "variants": 3, "loop": false, "volume_db": -2},
+  {"id": "jump", "prompt": "a light, springy jump sound: a quick soft whoosh of air with a gentle cartoon boing, short", "duration": 0.5, "variants": 3, "loop": false, "volume_db": -4},
+  {"id": "footstep", "prompt": "a single soft footstep on grass and dirt, one step only, close up, no background", "duration": 0.5, "variants": 4, "loop": false, "volume_db": -10, "pitch": 0.08},
+  {"id": "ui_click", "prompt": "a soft, crisp user interface button click, a tiny wooden tick, very short", "duration": 0.5, "variants": 2, "loop": false, "volume_db": -6, "pitch": 0.03},
+  {"id": "portal", "prompt": "stepping through a magic portal: a deep swirling whoosh rising into a shimmering sparkle", "duration": 2.0, "variants": 1, "loop": false, "volume_db": -2},
+  {"id": "build_place", "prompt": "placing a wooden block onto a stone floor: a solid satisfying wooden thunk with a tiny rattle", "duration": 0.6, "variants": 3, "loop": false, "volume_db": -3},
+  {"id": "build_denied", "prompt": "a soft low two-note buzz that means 'you can't do that', friendly, not harsh", "duration": 0.5, "variants": 1, "loop": false, "volume_db": -6, "pitch": 0},
+  {"id": "mission_complete", "prompt": "a short triumphant fanfare of bright brass and bells for completing a quest, cheerful, ends cleanly", "duration": 2.5, "variants": 1, "loop": false, "volume_db": -2, "pitch": 0},
+  {"id": "attack", "prompt": "a quick swing of a small wooden staff through the air, a short swish, no impact", "duration": 0.5, "variants": 3, "loop": false, "volume_db": -4, "placeholder": "whoosh"},
+  {"id": "hit", "prompt": "a soft cartoon bonk of a small projectile hitting a squishy creature, short and punchy", "duration": 0.5, "variants": 3, "loop": false, "volume_db": -3, "placeholder": "thump"},
+  {"id": "defeat", "prompt": "a small cartoon creature poofing away into a puff of smoke and sparkles, cute, not scary", "duration": 1.0, "variants": 2, "loop": false, "volume_db": -3, "placeholder": "sweep_down"},
+  {"id": "player_down", "prompt": "a gentle, sad descending cartoon 'wah-wah' slide whistle for losing, soft and kind, not scary", "duration": 1.5, "variants": 1, "loop": false, "volume_db": -3, "pitch": 0, "placeholder": "sweep_down"}
+]

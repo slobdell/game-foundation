@@ -1,0 +1,13 @@
+{
+  "_about": "Visual slots: every thing you can SEE in the game names a slot here. The game shows a coloured placeholder shape until a model for the slot exists at assets/models/<slot>.glb (or .tscn). Models are fitted to the slot (size, feet on the ground at the origin, facing -Z) by the asset pipeline, so new art can never change how the game plays. size_m is [width, height, depth] in metres. See _agents/assets.md.",
+  "player":        {"kind": "character", "size_m": [0.8, 1.8, 0.6], "placeholder": "capsule",  "color": "#3d8bfd", "tris": 20000, "notes": "the hero the player controls"},
+  "npc_guide":     {"kind": "character", "size_m": [0.8, 1.8, 0.6], "placeholder": "capsule",  "color": "#f2b134", "tris": 15000, "notes": "a friendly character who gives missions"},
+  "pickup_star":   {"kind": "pickup",    "size_m": [0.6, 0.6, 0.2], "placeholder": "prism",    "color": "#ffd23f", "tris": 2000,  "notes": "the thing you collect"},
+  "prop_rock":     {"kind": "prop",      "size_m": [1.6, 1.0, 1.4], "placeholder": "box",      "color": "#7d7d7d", "tris": 3000,  "notes": "scenery you bump into"},
+  "prop_tree":     {"kind": "prop",      "size_m": [3.0, 6.0, 3.0], "placeholder": "cylinder", "color": "#2f8f46", "tris": 6000,  "notes": "scenery, tall"},
+  "portal":        {"kind": "prop",      "size_m": [2.0, 3.0, 0.5], "placeholder": "box",      "color": "#a64dff", "tris": 4000,  "notes": "walk in to travel to another level"},
+  "enemy_basic":   {"kind": "character", "size_m": [1.0, 1.0, 1.0], "placeholder": "sphere",   "color": "#e0457b", "tris": 10000, "notes": "a basic enemy that chases you"},
+  "shot":          {"kind": "effect",    "size_m": [0.3, 0.3, 0.3], "placeholder": "sphere",   "color": "#9ff3ff", "tris": 500,   "notes": "what the player (or an enemy) fires"},
+  "build_block":   {"kind": "build",     "size_m": [2.0, 2.0, 2.0], "placeholder": "box",      "color": "#c98b55", "tris": 2000,  "notes": "a piece you place in build mode"},
+  "build_floor":   {"kind": "build",     "size_m": [2.0, 0.2, 2.0], "placeholder": "box",      "color": "#9c6b3f", "tris": 1000,  "notes": "a flat piece you place in build mode"}
+}

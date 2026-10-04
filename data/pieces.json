@@ -1,0 +1,8 @@
+{
+  "_about": "What build mode can place, in the order Q cycles through. Each piece shows a visual slot (data/slots.json) and costs items from the player's inventory (data/items.json). grid_m is the snap size.",
+  "grid_m": 2.0,
+  "pieces": [
+    {"id": "block", "slot": "build_block", "cost": {}},
+    {"id": "floor", "slot": "build_floor", "cost": {}}
+  ]
+}

@@ -1,0 +1,9 @@
+{
+  "name": "game-foundation-web-smoke",
+  "private": true,
+  "description": "Headless Chrome checks: boots the web export (make web-smoke) and screenshots choices pages (make choices-shot). Installed on first use.",
+  "type": "module",
+  "dependencies": {
+    "puppeteer-core": "25.10.0"
+  }
+}

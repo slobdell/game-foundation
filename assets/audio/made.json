@@ -1,0 +1,164 @@
+{
+  "assets/audio/sfx/attack_v1.ogg": {
+    "by": "placeholder",
+    "fp": "a3f4c7ecb4",
+    "prompt": "a quick swing of a small wooden staff through the air, a short swish, no impact",
+    "at": "2026-10-04T00:19:33"
+  },
+  "assets/audio/sfx/attack_v2.ogg": {
+    "by": "placeholder",
+    "fp": "a3f4c7ecb4",
+    "prompt": "a quick swing of a small wooden staff through the air, a short swish, no impact",
+    "at": "2026-10-04T00:19:33"
+  },
+  "assets/audio/sfx/attack_v3.ogg": {
+    "by": "placeholder",
+    "fp": "a3f4c7ecb4",
+    "prompt": "a quick swing of a small wooden staff through the air, a short swish, no impact",
+    "at": "2026-10-04T00:19:33"
+  },
+  "assets/audio/sfx/build_denied_v1.ogg": {
+    "by": "placeholder",
+    "fp": "23505623b9",
+    "prompt": "a soft low two-note buzz that means 'you can't do that', friendly, not harsh",
+    "at": "2026-10-04T00:19:30"
+  },
+  "assets/audio/sfx/build_place_v1.ogg": {
+    "by": "placeholder",
+    "fp": "d85f460d0d",
+    "prompt": "placing a wooden block onto a stone floor: a solid satisfying wooden thunk with a tiny rattle",
+    "at": "2026-10-04T00:19:30"
+  },
+  "assets/audio/sfx/build_place_v2.ogg": {
+    "by": "placeholder",
+    "fp": "d85f460d0d",
+    "prompt": "placing a wooden block onto a stone floor: a solid satisfying wooden thunk with a tiny rattle",
+    "at": "2026-10-04T00:19:30"
+  },
+  "assets/audio/sfx/build_place_v3.ogg": {
+    "by": "placeholder",
+    "fp": "d85f460d0d",
+    "prompt": "placing a wooden block onto a stone floor: a solid satisfying wooden thunk with a tiny rattle",
+    "at": "2026-10-04T00:19:30"
+  },
+  "assets/audio/sfx/defeat_v1.ogg": {
+    "by": "placeholder",
+    "fp": "5be9363ed7",
+    "prompt": "a small cartoon creature poofing away into a puff of smoke and sparkles, cute, not scary",
+    "at": "2026-10-04T00:19:34"
+  },
+  "assets/audio/sfx/defeat_v2.ogg": {
+    "by": "placeholder",
+    "fp": "5be9363ed7",
+    "prompt": "a small cartoon creature poofing away into a puff of smoke and sparkles, cute, not scary",
+    "at": "2026-10-04T00:19:34"
+  },
+  "assets/audio/sfx/footstep_v1.ogg": {
+    "by": "placeholder",
+    "fp": "308048356c",
+    "prompt": "a single soft footstep on grass and dirt, one step only, close up, no background",
+    "at": "2026-10-04T00:19:28"
+  },
+  "assets/audio/sfx/footstep_v2.ogg": {
+    "by": "placeholder",
+    "fp": "308048356c",
+    "prompt": "a single soft footstep on grass and dirt, one step only, close up, no background",
+    "at": "2026-10-04T00:19:28"
+  },
+  "assets/audio/sfx/footstep_v3.ogg": {
+    "by": "placeholder",
+    "fp": "308048356c",
+    "prompt": "a single soft footstep on grass and dirt, one step only, close up, no background",
+    "at": "2026-10-04T00:19:28"
+  },
+  "assets/audio/sfx/footstep_v4.ogg": {
+    "by": "placeholder",
+    "fp": "308048356c",
+    "prompt": "a single soft footstep on grass and dirt, one step only, close up, no background",
+    "at": "2026-10-04T00:19:28"
+  },
+  "assets/audio/sfx/hit_v1.ogg": {
+    "by": "placeholder",
+    "fp": "6eaf06b10a",
+    "prompt": "a soft cartoon bonk of a small projectile hitting a squishy creature, short and punchy",
+    "at": "2026-10-04T00:19:34"
+  },
+  "assets/audio/sfx/hit_v2.ogg": {
+    "by": "placeholder",
+    "fp": "6eaf06b10a",
+    "prompt": "a soft cartoon bonk of a small projectile hitting a squishy creature, short and punchy",
+    "at": "2026-10-04T00:19:34"
+  },
+  "assets/audio/sfx/hit_v3.ogg": {
+    "by": "placeholder",
+    "fp": "6eaf06b10a",
+    "prompt": "a soft cartoon bonk of a small projectile hitting a squishy creature, short and punchy",
+    "at": "2026-10-04T00:19:34"
+  },
+  "assets/audio/sfx/jump_v1.ogg": {
+    "by": "placeholder",
+    "fp": "e5a4195e7d",
+    "prompt": "a light, springy jump sound: a quick soft whoosh of air with a gentle cartoon boing, short",
+    "at": "2026-10-04T00:19:26"
+  },
+  "assets/audio/sfx/jump_v2.ogg": {
+    "by": "placeholder",
+    "fp": "e5a4195e7d",
+    "prompt": "a light, springy jump sound: a quick soft whoosh of air with a gentle cartoon boing, short",
+    "at": "2026-10-04T00:19:26"
+  },
+  "assets/audio/sfx/jump_v3.ogg": {
+    "by": "placeholder",
+    "fp": "e5a4195e7d",
+    "prompt": "a light, springy jump sound: a quick soft whoosh of air with a gentle cartoon boing, short",
+    "at": "2026-10-04T00:19:26"
+  },
+  "assets/audio/sfx/mission_complete_v1.ogg": {
+    "by": "placeholder",
+    "fp": "c91bdc803d",
+    "prompt": "a short triumphant fanfare of bright brass and bells for completing a quest, cheerful, ends cleanly",
+    "at": "2026-10-04T00:19:31"
+  },
+  "assets/audio/sfx/pickup_v1.ogg": {
+    "by": "placeholder",
+    "fp": "4bb6497513",
+    "prompt": "a bright, cheerful magical pickup chime, two quick rising sparkly notes, clean and short, no music",
+    "at": "2026-10-04T00:19:25"
+  },
+  "assets/audio/sfx/pickup_v2.ogg": {
+    "by": "placeholder",
+    "fp": "4bb6497513",
+    "prompt": "a bright, cheerful magical pickup chime, two quick rising sparkly notes, clean and short, no music",
+    "at": "2026-10-04T00:19:25"
+  },
+  "assets/audio/sfx/pickup_v3.ogg": {
+    "by": "placeholder",
+    "fp": "4bb6497513",
+    "prompt": "a bright, cheerful magical pickup chime, two quick rising sparkly notes, clean and short, no music",
+    "at": "2026-10-04T00:19:25"
+  },
+  "assets/audio/sfx/player_down_v1.ogg": {
+    "by": "placeholder",
+    "fp": "78dabb1a6f",
+    "prompt": "a gentle, sad descending cartoon 'wah-wah' slide whistle for losing, soft and kind, not scary",
+    "at": "2026-10-04T00:19:35"
+  },
+  "assets/audio/sfx/portal_v1.ogg": {
+    "by": "placeholder",
+    "fp": "48873a57be",
+    "prompt": "stepping through a magic portal: a deep swirling whoosh rising into a shimmering sparkle",
+    "at": "2026-10-04T00:19:29"
+  },
+  "assets/audio/sfx/ui_click_v1.ogg": {
+    "by": "placeholder",
+    "fp": "bd3711fe62",
+    "prompt": "a soft, crisp user interface button click, a tiny wooden tick, very short",
+    "at": "2026-10-04T00:19:28"
+  },
+  "assets/audio/sfx/ui_click_v2.ogg": {
+    "by": "placeholder",
+    "fp": "bd3711fe62",
+    "prompt": "a soft, crisp user interface button click, a tiny wooden tick, very short",
+    "at": "2026-10-04T00:19:28"
+  }
+}
