@@ -94,6 +94,14 @@ foundation improvements; each game picks them up with `make foundation-update`.
 (Update at the end of each foundation session: what changed, the last commit with a green `make check`, and
 which machine ran it.)
 
+**2026-10-04, second pass: kids as the audience.** Claude talks at an 11-year-old's level, teaches one hands-on
+thing per session (`teaching.md`), and runs all git/GitHub (`git.md`, `setup-my-game` skill, `make gh /
+start-my-game / github-login / github-create / backup / sync`). `make foundation-selftest` ALL GREEN at `8a8e5ca`
+(laptop). Tested by hand in a scratch clone: start-my-game, backup and sync against a stand-in remote (including
+a commit from "another computer"), and every refusal (not signed in, no origin, maintainer checkout).
+`gh auth login` was checked to print its device code non-interactively; a real sign-in and `gh repo create` have
+NOT been run yet (no kid account here): watch the first one.
+
 **2026-10-04: first version.** `make check` ALL GREEN at `e22fd0c` on the laptop (58 Godot tests, 82 Python
 tests, lint 51 scripts, export-web 39 MB). `make shots` and `make web-smoke` green and looked at.
 `make foundation-selftest` green at `e22fd0c` (a fresh clone passes `make check`). `foundation-update` was tried by
