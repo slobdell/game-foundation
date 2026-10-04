@@ -67,3 +67,13 @@ director's files `merge=ours` so later updates never overwrite their game.
 
 (Update at the end of each foundation session: what changed, the last commit with a green `make check`, and
 which machine ran it.)
+
+**2026-10-04: first version.** `make check` ALL GREEN at `e22fd0c` on the laptop (58 Godot tests, 82 Python
+tests, lint 51 scripts, export-web 39 MB). `make shots` and `make web-smoke` green and looked at.
+`make foundation-selftest` green at `e22fd0c` (a fresh clone passes `make check`). `foundation-update` was tried by
+hand: a kit doc change merged in, and the game's own HANDOFF.md was kept (merge=ours).
+Not yet exercised with real credits: Meshy (mock only) and ElevenLabs (mock only). The first real run of each
+should be watched by the parent: check the ledger lines match the provider's dashboard.
+Known slow spot: `tools/audio` Python tests take ~87 s of `make check`'s ~3 min.
+`.tools` in a new game is a symlink to the foundation's toolchain (which may itself point at another
+project's); if that folder moves, run `make bootstrap` in the game.
