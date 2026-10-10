@@ -82,20 +82,20 @@ model-look: import ## Four-side picture of a slot's finished model in its slot b
 	@test -n "$(SLOT)" || { echo "need SLOT="; exit 2; }
 	@[ -n "$${DISPLAY:-}" ] || { echo "model-look needs a display (DISPLAY is not set)"; exit 2; }
 	@mkdir -p $(SHOTS_DIR)
-	@$(LOCK) timeout 120 $(GODOT) --path . --resolution $(LOOK_SIZE) --script res://assets/pipeline/model_look.gd -- \
+	@$(LOCK) $(TIMEOUT) 120 $(GODOT) --path . --resolution $(LOOK_SIZE) --script res://assets/pipeline/model_look.gd -- \
 		--slot=$(SLOT) --out=$(CURDIR)/$(SHOTS_DIR)/look-$(SLOT).png 2>&1 | { grep -E 'MODEL_LOOK|note:' || true; }
 
 model-look-raw: import ## Four-side picture of a raw download with its +X/+Z axes, to choose FORWARD= for model-fit: IN=path.glb
 	@test -n "$(IN)" || { echo "need IN="; exit 2; }
 	@[ -n "$${DISPLAY:-}" ] || { echo "model-look-raw needs a display (DISPLAY is not set)"; exit 2; }
 	@mkdir -p $(SHOTS_DIR)
-	@$(LOCK) timeout 120 $(GODOT) --path . --resolution $(LOOK_SIZE) --script res://assets/pipeline/model_look.gd -- \
+	@$(LOCK) $(TIMEOUT) 120 $(GODOT) --path . --resolution $(LOOK_SIZE) --script res://assets/pipeline/model_look.gd -- \
 		--in=$(IN) --out=$(CURDIR)/$(SHOTS_DIR)/look-raw-$(basename $(notdir $(IN))).png 2>&1 | { grep -E 'MODEL_LOOK|size|triangles' || true; }
 
 assets-gallery: import ## Every slot side by side (its model, or its placeholder), with a 1.7 m person → build/screenshots/assets-gallery.png
 	@[ -n "$${DISPLAY:-}" ] || { echo "assets-gallery needs a display (DISPLAY is not set)"; exit 2; }
 	@mkdir -p $(SHOTS_DIR)
-	@$(LOCK) timeout 120 $(GODOT) --path . --resolution 1600x700 --script res://assets/pipeline/model_look.gd -- \
+	@$(LOCK) $(TIMEOUT) 120 $(GODOT) --path . --resolution 1600x700 --script res://assets/pipeline/model_look.gd -- \
 		--all --out=$(CURDIR)/$(SHOTS_DIR)/assets-gallery.png 2>&1 | { grep -E 'MODEL_LOOK' || true; }
 
 # ---- Practice and money -------------------------------------------------------------------------------------------

@@ -5,15 +5,21 @@
 gh: $(GH) ## Install GitHub's command-line tool into .tools (no sudo needed)
 
 $(GH):
-	@echo ">> Downloading gh $(GH_VERSION)"
-	mkdir -p $(DOWNLOADS)
-	curl -fsSL --retry 3 -o $(DOWNLOADS)/$(GH_TGZ) $(GH_URL)/$(GH_TGZ)
+	@echo ">> Downloading gh $(GH_VERSION) for $(HOST_NAME)"
+	mkdir -p $(DOWNLOADS) $(GH_HOME)
+	curl -fsSL --retry 3 -o $(DOWNLOADS)/$(GH_ARCHIVE) $(GH_URL)/$(GH_ARCHIVE)
 	curl -fsSL --retry 3 -o $(DOWNLOADS)/gh_$(GH_VERSION)_checksums.txt $(GH_URL)/gh_$(GH_VERSION)_checksums.txt
-	cd $(DOWNLOADS) && grep " $(GH_TGZ)$$" gh_$(GH_VERSION)_checksums.txt | sha256sum -c -
-	mkdir -p $(GH_HOME)
-	tar -xzf $(DOWNLOADS)/$(GH_TGZ) -C $(GH_HOME) --strip-components=1
-	rm -f $(DOWNLOADS)/$(GH_TGZ)
-	touch $@
+	cd $(DOWNLOADS) && grep " $(GH_ARCHIVE)$$" gh_$(GH_VERSION)_checksums.txt | shasum -a 256 -c -
+ifeq ($(HOST_OS),mac)
+	rm -rf $(DOWNLOADS)/gh-unzip && mkdir -p $(DOWNLOADS)/gh-unzip
+	unzip -q -o $(DOWNLOADS)/$(GH_ARCHIVE) -d $(DOWNLOADS)/gh-unzip
+	cp -R $(DOWNLOADS)/gh-unzip/$(basename $(GH_ARCHIVE))/. $(GH_HOME)/
+	rm -rf $(DOWNLOADS)/gh-unzip
+else
+	tar -xzf $(DOWNLOADS)/$(GH_ARCHIVE) -C $(GH_HOME) --strip-components=1
+endif
+	rm -f $(DOWNLOADS)/$(GH_ARCHIVE)
+	test -x $@ && touch $@
 
 start-my-game: ## First-time setup in a fresh clone of the foundation: NAME="Lava Lover" DIRECTOR=Sam (makes it YOUR game)
 	@test -n "$(NAME)" || { echo 'usage: make start-my-game NAME="Lava Lover" DIRECTOR=Sam'; exit 1; }

@@ -18,7 +18,7 @@ const BOOT_TIMEOUT_MS = Number(process.env.SMOKE_TIMEOUT_MS ?? 90_000);
 const MARKER = process.env.WEB_SMOKE_MARKER || "";
 
 const browser = await puppeteer.launch({
-  executablePath: process.env.CHROME ?? "/usr/bin/google-chrome",
+  executablePath: process.env.CHROME ?? (process.platform === "darwin" ? "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome" : "/usr/bin/google-chrome"),
   headless: true,
   args: ["--use-angle=swiftshader", "--enable-unsafe-swiftshader", "--window-size=1280,720", "--autoplay-policy=no-user-gesture-required"],
 });

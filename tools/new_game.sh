@@ -13,6 +13,6 @@ if [ -n "$(git -C "$SRC" status --porcelain)" ]; then
 	echo "new-game: the foundation has uncommitted changes; commit them first so the game starts from a known commit"; exit 1
 fi
 git clone --quiet "$SRC" "$DIR"
-if [ -d "$SRC/.tools" ] && [ ! -e "$DIR/.tools" ]; then ln -s "$(readlink -f "$SRC/.tools")" "$DIR/.tools"; fi
+if [ -d "$SRC/.tools" ] && [ ! -e "$DIR/.tools" ]; then ln -s "$(python3 -c 'import os, sys; print(os.path.realpath(sys.argv[1]))' "$SRC/.tools")" "$DIR/.tools"; fi
 "$DIR/tools/start_my_game.sh" "$NAME" "$DIRECTOR"
 echo ">> new game: $DIR"

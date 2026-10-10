@@ -22,9 +22,10 @@ export-web: import $(TEMPLATES_OK) ## Export the browser build to build/web (sin
 # Sizes, biggest first, and a warning for any file a free host would refuse.
 _web-size:
 	@echo ">> web build: $$(du -sh $(WEB_DIR) | cut -f1) in $(WEB_DIR) (game data index.pck: $$(du -h $(WEB_DIR)/index.pck | cut -f1), engine index.wasm: $$(du -h $(WEB_DIR)/index.wasm | cut -f1))"
-	@find $(WEB_DIR) -type f -size +$(WEB_FILE_WARN_MB)M -printf '%s %p\n' | while read -r bytes path; do \
+	@find $(WEB_DIR) -type f -size +$(WEB_FILE_WARN_MB)M | while read -r path; do bytes=$$(wc -c < "$$path"); \
 		echo ">> WARNING: $$path is $$((bytes / 1000000)) MB. GitHub Pages refuses files over 100 MB (see _agents/sharing.md: shrink textures/audio)"; done
-	@find $(WEB_DIR) -type f -size +25M -size -$(WEB_FILE_WARN_MB)M -printf '>> note: %p is over 25 MiB: fine for GitHub Pages and itch.io, too big for Cloudflare Pages\n'
+	@find $(WEB_DIR) -type f -size +25M -size -$(WEB_FILE_WARN_MB)M | while read -r path; do \
+		echo ">> note: $$path is over 25 MiB: fine for GitHub Pages and itch.io, too big for Cloudflare Pages"; done
 
 serve-web: export-web ## Play the browser build at http://localhost:8060 (WEB_HOST=0.0.0.0: other devices at home can play too)
 	$(PYTHON) tools/serve_web.py $(WEB_DIR) $(WEB_PORT) $(WEB_HOST)
@@ -32,20 +33,31 @@ serve-web: export-web ## Play the browser build at http://localhost:8060 (WEB_HO
 web-smoke: export-web $(WEB_SMOKE_DEPS) ## Boot the browser build in headless Chrome: no errors, the game draws -> build/web-smoke.png
 	@$(PYTHON) tools/serve_web.py $(WEB_DIR) $(SMOKE_PORT) 127.0.0.1 >/dev/null 2>&1 & server=$$!; \
 	trap 'kill $$server 2>/dev/null' EXIT; \
-	CHROME=$(CHROME) $(NODE) $(WEB_SMOKE_DIR)/smoke.mjs "http://127.0.0.1:$(SMOKE_PORT)/" $(CURDIR)/$(BUILD_DIR)/web-smoke.png
+	CHROME="$(CHROME)" $(NODE) $(WEB_SMOKE_DIR)/smoke.mjs "http://127.0.0.1:$(SMOKE_PORT)/" $(CURDIR)/$(BUILD_DIR)/web-smoke.png
 
 $(WEB_SMOKE_DEPS): $(WEB_SMOKE_DIR)/package.json
 	@command -v $(NODE) >/dev/null || { echo "need Node.js for browser checks (https://nodejs.org, or: sudo apt install nodejs npm)"; exit 1; }
 	cd $(WEB_SMOKE_DIR) && $(NPM) install --no-audit --no-fund
 	touch $@
 
-export-desktop: import $(TEMPLATES_OK) ## Export the Linux desktop game to build/desktop (one file) + a zip to share
+# The desktop game for THIS kind of computer (Mac: a .app in a zip; Linux: one file). On Linux, DESKTOP=mac builds the
+# Mac version too (the macOS template is installed everywhere), e.g. to send to a sibling on a Mac.
+DESKTOP ?= $(HOST_OS)
+export-desktop: import $(TEMPLATES_OK) ## Export the desktop game for this computer to build/desktop + a zip to share (DESKTOP=mac on Linux: the Mac version)
 	@rm -rf $(DESKTOP_DIR) && mkdir -p $(DESKTOP_DIR)
+ifeq ($(DESKTOP),mac)
+	@# A .zip holding Game.app, ad-hoc signed (enough to run on Apple Silicon; not notarized: see _agents/sharing.md).
+	@$(LOCK) $(GODOT) --headless --path . --export-release "macOS" $(CURDIR)/$(DESKTOP_DIR)/game-macos.zip > $(BUILD_DIR)/export-desktop.log 2>&1 \
+		|| { cat $(BUILD_DIR)/export-desktop.log; echo ">> export-desktop FAILED"; exit 1; }
+	@test -s $(DESKTOP_DIR)/game-macos.zip || { cat $(BUILD_DIR)/export-desktop.log; echo ">> export-desktop FAILED: no game-macos.zip"; exit 1; }
+	@echo ">> desktop build (Mac): $(DESKTOP_DIR)/game-macos.zip ($$(du -h $(DESKTOP_DIR)/game-macos.zip | cut -f1)); unzip it and double-click the app"
+else
 	@$(LOCK) $(GODOT) --headless --path . --export-release "Linux Desktop" $(DESKTOP_DIR)/game.x86_64 > $(BUILD_DIR)/export-desktop.log 2>&1 \
 		|| { cat $(BUILD_DIR)/export-desktop.log; echo ">> export-desktop FAILED"; exit 1; }
 	@test -x $(DESKTOP_DIR)/game.x86_64 || { cat $(BUILD_DIR)/export-desktop.log; echo ">> export-desktop FAILED: no game.x86_64"; exit 1; }
 	@cd $(DESKTOP_DIR) && rm -f game-linux.zip && $(PYTHON) -m zipfile -c game-linux.zip game.x86_64
 	@echo ">> desktop build: $(DESKTOP_DIR)/game.x86_64 ($$(du -h $(DESKTOP_DIR)/game.x86_64 | cut -f1)); to share: $(DESKTOP_DIR)/game-linux.zip"
+endif
 
 web-zip: export-web ## Zip the browser build for itch.io (upload as "HTML", played in the browser) -> build/game-web.zip
 	@rm -f $(BUILD_DIR)/game-web.zip && cd $(WEB_DIR) && $(PYTHON) -m zipfile -c ../game-web.zip $$(ls)

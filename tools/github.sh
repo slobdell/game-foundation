@@ -12,7 +12,7 @@ set -uo pipefail
 ROOT="$(cd "$(dirname "$0")/.." && pwd)"
 cd "$ROOT"
 GH="${GH:-.tools/gh-2.102.0/bin/gh}"
-GH="$(readlink -f "$GH")"
+GH="$(python3 -c 'import os, sys; print(os.path.realpath(sys.argv[1]))' "$GH")"  # readlink -f is missing on older Macs
 export GH_CONFIG_DIR="$ROOT/.gh"
 export GH_PROMPT_DISABLED=1
 mkdir -p "$GH_CONFIG_DIR"; chmod 700 "$GH_CONFIG_DIR"

@@ -31,7 +31,7 @@ function fakeRuntime() {
 }
 
 const browser = await puppeteer.launch({
-  executablePath: process.env.CHROME ?? "/usr/bin/google-chrome",
+  executablePath: process.env.CHROME ?? (process.platform === "darwin" ? "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome" : "/usr/bin/google-chrome"),
   headless: true,
   args: ["--hide-scrollbars"],
 });

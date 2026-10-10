@@ -22,18 +22,18 @@ SHOT_DELAY ?= 4
 shot: import ## Screenshot one level: LEVEL=id [SHOT_DELAY=4 AUTOPILOT=1] -> build/screenshots/<level>.png (needs a display)
 	@mkdir -p $(BUILD_DIR)/screenshots
 	@tools/run_strict.sh $(BUILD_DIR)/screenshots/$(or $(LEVEL),start).log \
-		timeout 60 $(GODOT) --path . --resolution 1280x720 -- --new --no-save $(_START) $(if $(AUTOPILOT),--autopilot) \
+		$(TIMEOUT) 60 $(GODOT) --path . --resolution 1280x720 -- --new --no-save $(_START) $(if $(AUTOPILOT),--autopilot) \
 		--screenshot=$(CURDIR)/$(BUILD_DIR)/screenshots/$(or $(LEVEL),start).png --screenshot-delay=$(SHOT_DELAY)
 
 shots: import ## Screenshot EVERY level + 12 s of autopilot -> build/screenshots/*.png; fails on any runtime error (needs a display)
 	@mkdir -p $(BUILD_DIR)/screenshots
 	@for id in $$($(PYTHON) -c "import json; print(' '.join(json.load(open('data/levels.json'))['levels']))"); do \
-		tools/run_strict.sh $(BUILD_DIR)/screenshots/$$id.log timeout 60 $(GODOT) --path . --resolution 1280x720 -- \
+		tools/run_strict.sh $(BUILD_DIR)/screenshots/$$id.log $(TIMEOUT) 60 $(GODOT) --path . --resolution 1280x720 -- \
 			--new --no-save --level=$$id --screenshot=$(CURDIR)/$(BUILD_DIR)/screenshots/$$id.png \
 			--screenshot-delay=$(SHOT_DELAY) || exit 1; \
 	done
 	@# The autopilot playing the start level: catches errors that only happen when things get picked up and freed.
-	@tools/run_strict.sh $(BUILD_DIR)/screenshots/autopilot.log timeout 60 $(GODOT) --path . --resolution 1280x720 -- \
+	@tools/run_strict.sh $(BUILD_DIR)/screenshots/autopilot.log $(TIMEOUT) 60 $(GODOT) --path . --resolution 1280x720 -- \
 		--new --no-save --autopilot --screenshot=$(CURDIR)/$(BUILD_DIR)/screenshots/autopilot.png --screenshot-delay=12
 
 new-level: ## Add a level from the template: ID=lava_fields TITLE="Lava Fields" [MUSIC=explore]

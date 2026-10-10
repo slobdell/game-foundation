@@ -10,7 +10,7 @@ Two builds: the **browser build** (friends click a link and play; nothing to ins
 | `make web-smoke` | headless Chrome loads it, plays a few seconds, saves `build/web-smoke.png`; fails on console errors, files that didn't load, or a blank screen. Look at the PNG. |
 | `make publish-web` | puts the browser build on GitHub Pages (below) |
 | `make web-zip` | `build/game-web.zip` for itch.io (below) |
-| `make export-desktop` | `build/desktop/game.x86_64` (one file, game data inside) + `game-linux.zip` |
+| `make export-desktop` | For this kind of computer. Mac: `build/desktop/game-macos.zip` (the .app inside, for Apple Silicon and Intel). Linux: `build/desktop/game.x86_64` (one file, game data inside) + `game-linux.zip`. On Linux, `DESKTOP=mac` builds the Mac zip too |
 
 ## Why the browser build is made this way
 
@@ -59,9 +59,12 @@ parent's account hosts it. Updating: upload a new zip and delete the old one.
 
 ## Sharing the desktop build
 
-`make export-desktop` makes `build/desktop/game.x86_64` (the game's data is inside it) and `game-linux.zip`. A
-friend on **Linux** unzips it, then `chmod +x game.x86_64` (zips can drop the "runnable" flag) and runs it.
-Windows and macOS friends: use the browser link. (A Windows build needs the `windows_release_x86_64.exe` export
+**Mac:** `make export-desktop` makes `build/desktop/game-macos.zip`. A friend with a Mac unzips it and opens the
+app. It is signed "ad-hoc", not notarized (that needs a paid Apple developer account), so the first time macOS says
+it can't check the app: right-click it → **Open** → **Open**. After that it opens normally.
+**Linux:** `make export-desktop` makes `build/desktop/game.x86_64` (the game's data is inside it) and
+`game-linux.zip`. A friend on Linux unzips it, `chmod +x game.x86_64` (zips can drop the "runnable" flag) and runs it.
+Windows friends: use the browser link. (A Windows build needs the `windows_release_x86_64.exe` export
 template added to `TEMPLATE_FILES` in the root `Makefile`, a "Windows Desktop" preset, and an unsigned-app warning
 click-through for the friend; not set up yet.)
 

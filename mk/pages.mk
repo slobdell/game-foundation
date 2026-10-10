@@ -24,4 +24,4 @@ WEB_SMOKE_DEPS ?= $(WEB_SMOKE_DIR)/node_modules/.package-lock.json
 .PHONY: choices-shot
 choices-shot: $(WEB_SMOKE_DEPS) ## Look before you publish: phone + desktop screenshots of build/pages/NAME/ (TAP=1 also taps and checks saving)
 	@test -n "$(NAME)" || { echo "need NAME="; exit 2; }
-	CHROME=$(CHROME) $(NODE) $(WEB_SMOKE_DIR)/page_shot.mjs $(PAGES_DIR)/$(NAME)/index.html $(BUILD_DIR)/screenshots/pages/$(NAME) $(if $(TAP),--tap)
+	CHROME="$(CHROME)" $(NODE) $(WEB_SMOKE_DIR)/page_shot.mjs $(PAGES_DIR)/$(NAME)/index.html $(BUILD_DIR)/screenshots/pages/$(NAME) $(if $(TAP),--tap)

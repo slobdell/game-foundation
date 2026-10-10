@@ -75,7 +75,7 @@ foundation improvements; each game picks them up with `make foundation-update`.
 
 | Area | Paths |
 |---|---|
-| Core | `Makefile`, `mk/core.mk`, `mk/play.mk`, `mk/foundation.mk`, `mk/git.mk`, `tools/github.sh`, `tools/start_my_game.sh`, `tests/run_tests.gd`, `tests/test_case.gd`, `tools/lint.gd`, `tools/new_*.{py,sh}` |
+| Core | `Makefile`, `mk/core.mk`, `mk/play.mk`, `mk/foundation.mk`, `mk/git.mk`, `tools/github.sh`, `tools/start_my_game.sh`, `tools/setup/` (lock, timeout, shell wrapper, zip_members), `tests/run_tests.gd`, `tests/test_case.gd`, `tools/lint.gd`, `tools/new_*.{py,sh}` |
 | Kit | `game/`, `data/` (not `data/voices.json`), `tests/test_*.gd` for the kit |
 | Assets (Meshy) | `tools/assets/`, `assets/pipeline/`, `mk/assets.mk`, `_agents/assets.md`, `_agents/art_direction.md`, `.claude/skills/make-model/` |
 | Audio (ElevenLabs, Suno) | `tools/audio/`, `game/kit/audio/`, `mk/audio.mk`, `data/voices.json`, `assets/audio/`, `assets/music/`, `_agents/audio.md`, `.claude/skills/make-sound/` |

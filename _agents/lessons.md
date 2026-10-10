@@ -35,7 +35,7 @@ happened and the rule it taught.
 9. **Two headless Godots in one folder corrupt `.godot/`**, and the errors ("Nonexistent function",
    "referenced non-existent resource") look exactly like broken code. Make targets take a lock; use them.
 10. **A timeout that kills the parent doesn't stop the children.** If you kill a run, check nothing is still
-   running (`pgrep -af Godot`) before starting another.
+   running (`pgrep -fl Godot`) before starting another.
 11. **A new `class_name` is invisible until `make import`.**
 12. **Forward is −Z; positive `rotation.y` turns left.** The #1 "it drives backwards" bug.
 13. **Physics happens on physics frames.** Set something, then `await` frames before you check it.
