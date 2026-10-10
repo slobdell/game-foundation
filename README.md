@@ -35,6 +35,14 @@ A gamepad works too.
 
 ## For parents
 
+**Setting up a kid's Mac in one command:** on your computer, in this folder, in a terminal where your keys are
+loaded (`MESHY_API_KEY`, `ELEVENLABS_API_KEY`, `ELEVENLABS_KEY_ID`), run `make kid-setup-command`. It prints one
+line (with the keys in it: send it privately, delete it after). Paste that line into Terminal on the kid's Mac:
+it installs Apple's developer tools if needed (click Install; may ask for the Mac's password), saves the keys,
+installs Claude Code, downloads the game into `~/my-game` with all its tools, and checks it all works (10–30 min).
+Then the kid runs `cd ~/my-game && claude` and signs in: they send you the sign-in link, you approve it on
+**your** computer and send back the code. Nobody types your Google or Claude password on their Mac.
+
 - **Before the kids start:** push this foundation to GitHub (`FOUNDATION.md` says how) and give them its clone
   link. Make the foundation repo **public** (it has no secrets) so the kids' first `git clone` needs no password. Each kid needs: a GitHub account, git, Python 3, `make`, `ffmpeg`, and Claude Code. Godot and GitHub's
   `gh` tool download themselves into the game folder (`make bootstrap`, `make gh`).

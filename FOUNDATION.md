@@ -94,6 +94,12 @@ foundation improvements; each game picks them up with `make foundation-update`.
 (Update at the end of each foundation session: what changed, the last commit with a green `make check`, and
 which machine ran it.)
 
+**2026-10-10: Mac support + one-command setup.** `4e764d2` ports the toolchain to macOS (per-OS Godot, gh,
+project-local Python 3.12 and ffmpeg, portable lock/timeout helpers, make 3.81 / bash 3.2 compatible).
+`tools/setup_mac.sh` + `make kid-setup-command` (prints the pasteable command with the parent's keys). The whole
+setup script was run end to end on Linux in a throwaway HOME from a fresh clone: exit 0, the game's `make check`
+ALL GREEN. Never yet run on a real Mac: watch the first one.
+
 **2026-10-10: published.** Public at **https://github.com/slobdell/game-foundation** (`origin`), pushed from
 `7fd8343`. The kids clone it with `git clone https://github.com/slobdell/game-foundation.git my-game`. An
 anonymous clone (no sign-in) was checked to work. Publishing foundation improvements: commit, `make
