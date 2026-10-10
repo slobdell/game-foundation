@@ -94,6 +94,11 @@ foundation improvements; each game picks them up with `make foundation-update`.
 (Update at the end of each foundation session: what changed, the last commit with a green `make check`, and
 which machine ran it.)
 
+**2026-10-10: published.** Public at **https://github.com/slobdell/game-foundation** (`origin`), pushed from
+`7fd8343`. The kids clone it with `git clone https://github.com/slobdell/game-foundation.git my-game`. An
+anonymous clone (no sign-in) was checked to work. Publishing foundation improvements: commit, `make
+foundation-selftest`, `git push origin main`. This checkout's GitHub sign-in is the lead's own (`~/.config/gh`).
+
 **2026-10-04, second pass: kids as the audience.** Claude talks at an 11-year-old's level, teaches one hands-on
 thing per session (`teaching.md`), and runs all git/GitHub (`git.md`, `setup-my-game` skill, `make gh /
 start-my-game / github-login / github-create / backup / sync`). `make foundation-selftest` ALL GREEN at `8a8e5ca`

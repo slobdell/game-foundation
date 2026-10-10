@@ -8,7 +8,7 @@ builds it with you, one playable step at a time.
 You only type three things yourself. Open a terminal and type:
 
 ```
-git clone <the link your parent gives you> my-game
+git clone https://github.com/slobdell/game-foundation.git my-game
 cd my-game
 claude
 ```
