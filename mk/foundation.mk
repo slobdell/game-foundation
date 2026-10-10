@@ -19,3 +19,6 @@ foundation-selftest: ## (in game-foundation) Make a throwaway game from the last
 	rm -rf $(BUILD_DIR)/selftest
 	tools/new_game.sh "Selftest" "$(CURDIR)/$(BUILD_DIR)/selftest" "Selftest"
 	$(MAKE) -C $(BUILD_DIR)/selftest --no-print-directory check
+
+kid-setup-command: ## (in game-foundation, YOUR terminal) Print the one-line Mac setup command for a kid, keys included (secret!)
+	@tools/kid_setup_command.sh

@@ -143,7 +143,7 @@ WEB_HOST       ?= 127.0.0.1
 KEYS_FILE      ?= $(HOME)/.config/game-foundation/keys.env
 ifneq ($(wildcard $(KEYS_FILE)),)
   include $(KEYS_FILE)
-  export MESHY_API_KEY ELEVENLABS_API_KEY
+  export MESHY_API_KEY ELEVENLABS_API_KEY ELEVENLABS_KEY_ID
 endif
 
 help: ## Show this help
